@@ -1,6 +1,6 @@
 NAME = Demo
 
-.PHONY: all setup build start stop status logs restart
+.PHONY: all create_table login logs kill setup start status stop
 
 all: setup build start
 restart: stop start
