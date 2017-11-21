@@ -18,4 +18,6 @@ COPY reqs/requirements.txt /app/code/reqs/
 
 RUN pip install -r reqs/requirements.txt
 
+USER app
+
 COPY . /app/code

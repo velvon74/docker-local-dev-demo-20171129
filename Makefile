@@ -8,21 +8,14 @@ rebuild: build restart
 
 PROJECTDIR := $(shell /bin/bash -c pwd)
 
-setup:
-		virtualenv .docker_env && ./.docker_env/bin/pip install -r reqs/docker.txt
-		touch .env
-
 build:
 		@docker/scripts/docker-compose build
 
-start:
-		@docker/scripts/docker-compose up -d --remove-orphans
+create_table:
+		@docker/scripts/docker-compose exec --user app demo sh /app/code/docker/scripts/create_table.sh $(table)
 
-stop:
-		@docker/scripts/docker-compose down
-
-status:
-		@docker/scripts/docker-compose ps
+login:
+		@docker/scripts/docker-compose exec --user app demo sh
 
 logs:
 		@docker/scripts/docker-compose logs
@@ -30,5 +23,15 @@ logs:
 kill:
 		@docker/scripts/docker-compose exec demo sh /app/code/docker/scripts/kill.sh
 
-create_table:
-		@docker/scripts/docker-compose exec demo sh /app/code/docker/scripts/create_table.sh $(table)
+setup:
+		virtualenv .docker_env && ./.docker_env/bin/pip install -r reqs/docker.txt
+		touch .env
+
+start:
+		@docker/scripts/docker-compose up -d --remove-orphans
+
+status:
+		@docker/scripts/docker-compose ps
+
+stop:
+		@docker/scripts/docker-compose down
