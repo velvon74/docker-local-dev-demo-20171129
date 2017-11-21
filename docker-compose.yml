@@ -1,0 +1,37 @@
+version: '3'
+services:
+  demo:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - UID=${DEV_UID}
+        - GID=${DEV_GID}
+    command: sh /app/code/docker/scripts/start.sh
+    env_file:
+      - docker/settings/demo.txt
+      - .env
+    ports:
+      - "${HOST_DEMO_PORT}:8000"
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app/code
+    stdin_open: true
+    tty: true
+
+  mysql:
+    image: mysql:5.6
+    ports:
+      - ${HOST_MYSQL_PORT}:3306
+    environment:
+      - MYSQL_DATABASE=${DEMO_MYSQL_DB}
+      - MYSQL_USER=${DEMO_MYSQL_USER}
+      - MYSQL_PASSWORD=${DEMO_MYSQL_PASS}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:
+    external: false

@@ -1,0 +1,21 @@
+FROM python:2.7.14-alpine
+
+ARG UID=1000
+ARG GID=1000
+
+RUN apk --update add \
+  gcc \
+  mariadb-client \
+  mariadb-dev \
+  musl-dev \
+  && \
+  addgroup -g $GID -S apps && \
+  adduser -h /app -S -s /bin/sh -G apps -D -H -u $UID app
+
+WORKDIR /app/code
+
+COPY reqs/requirements.txt /app/code/reqs/
+
+RUN pip install -r reqs/requirements.txt
+
+COPY . /app/code
