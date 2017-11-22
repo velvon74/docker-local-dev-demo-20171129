@@ -12,7 +12,7 @@ build:
 		@docker/scripts/docker-compose build
 
 create_table:
-		@docker/scripts/docker-compose exec demo sh /app/code/docker/scripts/create_table.sh $(table)
+		@docker/scripts/docker-compose exec demo sh /app/code/docker/scripts/create_table.sh $(name)
 
 login:
 		@docker/scripts/docker-compose exec demo sh

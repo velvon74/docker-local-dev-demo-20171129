@@ -21,3 +21,7 @@ RUN pip install -r reqs/requirements.txt
 USER app
 
 COPY . /app/code
+
+EXOPOSE 8000
+
+CMD ["/bin/sh", "/app/code/docker/scripts/run.sh"]

@@ -34,14 +34,16 @@ class S(BaseHTTPRequestHandler):
 
         cursor.execute("SHOW TABLES")
         # print tables
-        self.wfile.write('Tables:\n')
+        self.wfile.write('--demo app--\n\n')
+        self.wfile.write('Tables in "{DB}":\n'.format(
+            DB = MYSQL_DB
+        ))
         no_tables = True
         for (table_name,) in cursor:
             no_tables = False
-            self.wfile.write(table_name)
-            self.wfile.write('\n')
+            self.wfile.write(''.join(['  ',table_name, '\n']))
         if no_tables:
-            self.wfile.write('no tables')
+            self.wfile.write('no tables\n')
 
     def do_HEAD(self):
         self._set_headers()
