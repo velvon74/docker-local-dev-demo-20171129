@@ -32,7 +32,7 @@ rebuild: ## build && restart
 rebuild: build restart
 
 restart: ## stop && start
-restart: stop tart
+restart: stop start
 
 setup: ## Setup local dev env
 		@echo Preparing localhost, keep calm
