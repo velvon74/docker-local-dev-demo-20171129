@@ -14,7 +14,9 @@ source_it "./docker/settings/host.txt"
 source_it "./docker/settings/demo.txt"
 source_it "./.env"
 
-export DEV_UID=$(id -u)
-export DEV_GID=$(id -g)
+# export DEV_UID=$(id -u)
+# export DEV_GID=$(id -g)
+export DEV_UID=501
+export DEV_GID=501
 
 docker-compose "$@"

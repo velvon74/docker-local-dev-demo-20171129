@@ -50,3 +50,10 @@ status: ## Local dev env status
 stop: ## Stop local dev env
 		@echo Stopping the App
 		@docker/scripts/docker-compose down
+
+clean: ## Delete Docker images
+		@echo Stopping the App
+		@docker/scripts/docker-compose down
+		@echo Deleting Docker images
+		@docker/scripts/docker-compose rm --force
+
