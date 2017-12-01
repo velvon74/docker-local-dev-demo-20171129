@@ -13,6 +13,10 @@ create_table: ## Create table using arg "name"
 		@echo Creating a table
 		@docker/scripts/docker-compose exec demo sh /app/code/docker/scripts/create_table.sh $(name)
 
+drop_table: ## Create table using arg "name"
+		@echo Deletting a table
+		@docker/scripts/docker-compose exec demo sh /app/code/docker/scripts/drop_table.sh $(name)
+
 help: ## Show this help.
 		@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 

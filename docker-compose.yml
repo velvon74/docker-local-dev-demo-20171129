@@ -29,7 +29,7 @@ services:
       - MYSQL_PASSWORD=${DEMO_MYSQL_PASS}
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - mysql:/var/lib/mysql
+      - ./.mysql:/var/lib/mysql
 
 volumes:
   mysql:
